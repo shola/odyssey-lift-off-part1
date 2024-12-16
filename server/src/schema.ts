@@ -26,7 +26,7 @@ const typeDefs = gql`
     "the track's approximate length to complete, in minutes"
     length: Int
     "the number of modules this track contains"
-    moduleCount: Int
+    modulesCount: Int
   }
 
 "Author of a complete Track"
@@ -35,7 +35,7 @@ const typeDefs = gql`
     "Author's first and last name"
     name: String!
     "Author's profile picture url"
-    picture: String
+    photo: String
   }
 `;
 
