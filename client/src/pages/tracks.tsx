@@ -28,6 +28,7 @@ const TRACKS = gql(`
     }
   }
 `);
+
 /**
  * Tracks Page is the Catstronauts home page.
  * We display a grid of tracks fetched with useQuery with the TRACKS query
