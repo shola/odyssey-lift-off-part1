@@ -1,6 +1,7 @@
 import { gql } from "graphql-tag";
 
-// QUESTION: can/should apollo explorer be used to create these types?
+// NOTE: this can be in a monorepo's shared library 
+
 // Object types that the graphql API can return. These model
 // the business domain
 const typeDefs = gql`

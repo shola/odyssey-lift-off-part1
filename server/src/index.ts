@@ -2,6 +2,8 @@ import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 import { addMocksToSchema } from "@graphql-tools/mock";
 import { makeExecutableSchema } from "@graphql-tools/schema";
+
+// This could be in a monorepo's shared library
 import { typeDefs } from "./schema";
 
 const mocks = {
