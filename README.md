@@ -1,6 +1,6 @@
-# Odyssey Lift-off I: Basics
+# Odyssey Lift-off Series
 
-Welcome to the companion app of Odyssey Lift-off I! You can [find the course lessons and instructions on Odyssey](https://odyssey.apollographql.com/lift-off-part1), Apollo's learning platform.
+Welcome to the companion app of Odyssey Lift-off! You can [find the course lessons and instructions on Odyssey](https://odyssey.apollographql.com/lift-off-part1), Apollo's learning platform.
 
 You can [preview the completed demo app here](https://odyssey-catstronauts.netlify.app/).
 
@@ -33,3 +33,8 @@ This will open up `localhost:3000` in your web browser.
 ## Getting help
 
 For any issues or problems concerning the course content, please refer to the [Odyssey topic in our community forums](https://community.apollographql.com/tags/c/help/6/odyssey).
+
+## Enhancement Ideas
+- [ ] convert to a monorepo using nx
+- [ ] get data dump from the [public catsronauts API](https://odyssey-lift-off-rest-api.herokuapp.com/docs/) and add to a sqlite db
+- [ ] rewrite resolvers using an ORM like prisma to access the sqlite db

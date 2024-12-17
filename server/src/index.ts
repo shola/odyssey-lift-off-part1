@@ -1,41 +1,30 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
-import { addMocksToSchema } from "@graphql-tools/mock";
-import { makeExecutableSchema } from "@graphql-tools/schema";
-
+import TrackAPI from "./datasources/track-api";
+import resolvers from "./resolvers";
 // This could be in a monorepo's shared library
 import { typeDefs } from "./schema";
 
-const mocks = {
-    Query: () => ({
-        tracksForHome: [...new Array(6)]
-    }),
-  Track: () => ({
-    id: () => "track_01",
-    title: () => "Astro Kitty, Space Explorer",
-    thumbnail: () =>
-      "https://res.cloudinary.com/apollographql/image/upload/v1730818804/odyssey/lift-off-api/nebula_cat_djkt9r_nzifdj.jpg",
-
-    author: () => ({
-      name: "Grumpy Cat",
-      photo:
-        "https://res.cloudinary.com/apollographql/image/upload/v1730818804/odyssey/lift-off-api/catstrophysicist_bqfh9n_j0amow.jpg",
-    }),
-    length: () => 1210,
-    moduleCount: () => 6,
-  }),
-};
+interface APIContext {
+  dataSources: {
+    trackAPI: TrackAPI;
+  };
+}
 
 async function startApolloServer() {
-  const server = new ApolloServer({
-    schema: addMocksToSchema({
-      schema: makeExecutableSchema({
-        typeDefs,
-      }),
-      mocks,
+  const server = new ApolloServer<APIContext>({
+    typeDefs,
+    resolvers,
+  });
+  const { url } = await startStandaloneServer(server, {
+    context: async ({}) => ({
+      dataSources: {
+        trackAPI: new TrackAPI({
+          cache: server.cache,
+        }),
+      },
     }),
   });
-  const { url } = await startStandaloneServer(server);
   console.log(`
     🚀 Server is running!
     📭 Query at ${url}
