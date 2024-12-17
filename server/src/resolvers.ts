@@ -1,4 +1,9 @@
-import type { Resolvers, Author, ResolversTypes, Track } from './__generated__/types'
+import type {
+  Resolvers,
+  Author,
+  ResolversTypes,
+  Track,
+} from "./__generated__/types";
 import type { DataSourceContext } from "./context";
 
 /**
@@ -12,30 +17,31 @@ const resolvers: Resolvers<DataSourceContext> = {
     // returns an array fo tracks that will be used to populate the homepage grid of our web client
     // ANTI-PATTERN: don't map over data and fetch additional data!
     // It's not cool to fetch data that isn't strictly required.
-    tracksForHome: async (_, __, { dataSources }) => {
+    tracksForHome: (_, __, { dataSources }) => {
       return dataSources.trackAPI.getTracksForHome();
     },
-    track: async (_, {id}, { dataSources}) => {
+    // Get a single track by ID, for the track page
+    track: (_, { id }, { dataSources }) => {
       return dataSources.trackAPI.getTrack(id);
-    }
+    },
   },
   Track: {
-    author: async ({authorId}, _, { dataSources }) => {
+    author: ({ authorId }, _, { dataSources }) => {
       // BEST-PRACTICE: make resolvers thin
       /**
-       * The TrackAPI's getAuthor method needs an authorId. We'll get this 
-       * value from the parent argument passed to the resolver. The parent 
-       * argument contains data returned by our tracksForHome resolver, and 
-       * because tracksForHome returns a list, Apollo Server iterates 
-       * through that list and calls the author resolver once for each 
-       * track. It passes the current track as the value of parent, 
+       * The TrackAPI's getAuthor method needs an authorId. We'll get this
+       * value from the parent argument passed to the resolver. The parent
+       * argument contains data returned by our tracksForHome resolver, and
+       * because tracksForHome returns a list, Apollo Server iterates
+       * through that list and calls the author resolver once for each
+       * track. It passes the current track as the value of parent,
        * enabling us to extract the authorId.
-       */ 
+       */
       return dataSources.trackAPI.getAuthor(authorId);
     },
-    modules: async ({id: trackId}, args, { dataSources }) => {
-      return dataSources.trackAPI.getModules(trackId)
-    }
+    modules: ({ id: trackId }, args, { dataSources }) => {
+      return dataSources.trackAPI.getModules(trackId);
+    },
   },
 };
 
