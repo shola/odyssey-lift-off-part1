@@ -1,6 +1,6 @@
 import { RESTDataSource } from "@apollo/datasource-rest";
 import { Author } from "../__generated__/types";
-import { TrackModel } from "../models";
+import { ModuleModel, TrackModel } from "../models";
 
 /**
  * RESTDatasource uses `fetch` under the hood, and also adds:
@@ -22,6 +22,14 @@ export class TrackAPI extends RESTDataSource {
   // SECURITY: use encodeURIComponent to prevent possible injection attacks
   getAuthor(authorId: string) {
     return this.get<Author>(`author/${encodeURIComponent(authorId)}`);
+  }
+
+  getTrack(trackId: string) {
+    return this.get<TrackModel>(`track/${encodeURIComponent(trackId)}`);
+  }
+
+  getModules(trackId: string) {
+    return this.get<ModuleModel[]>(`track/${encodeURIComponent(trackId)}/modules`)
   }
 }
 

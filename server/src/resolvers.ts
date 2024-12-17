@@ -15,6 +15,9 @@ const resolvers: Resolvers<DataSourceContext> = {
     tracksForHome: async (_, __, { dataSources }) => {
       return dataSources.trackAPI.getTracksForHome();
     },
+    track: async (_, {id}, { dataSources}) => {
+      return dataSources.trackAPI.getTrack(id);
+    }
   },
   Track: {
     author: async ({authorId}, _, { dataSources }) => {
@@ -30,6 +33,9 @@ const resolvers: Resolvers<DataSourceContext> = {
        */ 
       return dataSources.trackAPI.getAuthor(authorId);
     },
+    modules: async ({id: trackId}, args, { dataSources }) => {
+      return dataSources.trackAPI.getModules(trackId)
+    }
   },
 };
 
