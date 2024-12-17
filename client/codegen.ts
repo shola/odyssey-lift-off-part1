@@ -1,4 +1,4 @@
-import { CodegenConfig } from "@graphql-codegen/cli";
+import type { CodegenConfig } from "@graphql-codegen/cli";
 
 /**
 It's true that our Catstronauts application contains both the client and server folders in one codebase. So why don't we just tell the GraphQL Code Generator to reference the types in the server folder's schema? In other words - why are we going out to the GraphQL endpoint to gather this information?

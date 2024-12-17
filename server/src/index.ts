@@ -4,20 +4,15 @@ import TrackAPI from "./datasources/track-api";
 import resolvers from "./resolvers";
 // This could be in a monorepo's shared library
 import { typeDefs } from "./schema";
-
-interface APIContext {
-  dataSources: {
-    trackAPI: TrackAPI;
-  };
-}
+import { DataSourceContext } from "./context";
 
 async function startApolloServer() {
-  const server = new ApolloServer<APIContext>({
+  const server = new ApolloServer<DataSourceContext>({
     typeDefs,
     resolvers,
   });
   const { url } = await startStandaloneServer(server, {
-    context: async ({}) => ({
+    context: async () => ({
       dataSources: {
         trackAPI: new TrackAPI({
           cache: server.cache,

@@ -1,20 +1,23 @@
+import type { Resolvers, Author, ResolversTypes, Track } from './__generated__/types'
+import type { DataSourceContext } from "./context";
+
 /**
  * Steps to adding a graphql query to an app:
  * - create query in apollo studio
  * - add query to string to client code
  * - add resolvers for query to server
  */
-const resolvers = {
+const resolvers: Resolvers<DataSourceContext> = {
   Query: {
     // returns an array fo tracks that will be used to populate the homepage grid of our web client
     // ANTI-PATTERN: don't map over data and fetch additional data!
     // It's not cool to fetch data that isn't strictly required.
-    tracksForHome: async (parent, args, { dataSources }, info) => {
+    tracksForHome: async (_, __, { dataSources }) => {
       return dataSources.trackAPI.getTracksForHome();
     },
   },
   Track: {
-    author: async ({authorId}, args, { dataSources }, info) => {
+    author: async ({authorId}, _, { dataSources }) => {
       // BEST-PRACTICE: make resolvers thin
       /**
        * The TrackAPI's getAuthor method needs an authorId. We'll get this 
