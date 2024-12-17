@@ -1,6 +1,6 @@
 import { RESTDataSource } from "@apollo/datasource-rest";
 import { Author } from "../__generated__/types";
-import { TrackModel } from "../model";
+import { TrackModel } from "../models";
 
 /**
  * RESTDatasource uses `fetch` under the hood, and also adds:
