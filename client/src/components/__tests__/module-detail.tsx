@@ -42,6 +42,6 @@ describe('Module Detail View', () => {
   afterEach(cleanup);
 
   it('renders without error', () => {
-    renderWithRouter(<ModuleDetail module={mockModule} track={mockParentTrack} />);
+    renderWithRouter(<ModuleDetail module={mockModule} track={mockParentTrack} />, {});
   });
 });

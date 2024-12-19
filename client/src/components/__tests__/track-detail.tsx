@@ -33,6 +33,6 @@ describe('Module Detail View', () => {
   afterEach(cleanup);
 
   it('renders without error', () => {
-    renderWithRouter(<TrackDetail {...mockTrack} />);
+    renderWithRouter(<TrackDetail {...mockTrack} />, {});
   });
 });

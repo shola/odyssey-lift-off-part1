@@ -45,7 +45,9 @@ export const Track = () => {
 
   return (
     <QueryResult loading={loading} error={error} data={data}>
-      <TrackDetail track={data?.track}></TrackDetail>
+      <Layout>
+        <TrackDetail track={data?.track}></TrackDetail>
+      </Layout>
     </QueryResult>
   );
 };

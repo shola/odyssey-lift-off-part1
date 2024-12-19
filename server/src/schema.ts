@@ -34,8 +34,14 @@ const typeDefs = gql`
     numberOfViews: Int
     "The track's main author"
     author: Author!
-    "The track's complete array of Modules"
-    modules: [Module!]!
+    """
+    The track's complete array of Modules.
+    I made this array optional so that the "track" returned from the track
+    and tracksForHome queries could use the same type. This is not ideal 
+    because now the types have to check for the existence of modules before
+    using, but it seems like an OK tradeoff for maximum type safety.
+    """
+    modules: [Module!]
   }
 
   "A Module is a single unit of teaching. Multiple Modules compose a track."
