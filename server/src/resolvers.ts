@@ -26,6 +26,10 @@ const resolvers: Resolvers<DataSourceContext> = {
     },
   },
   Track: {
+    /**
+     * These resolvers are part of a resolver chain. That's why they have
+     * access to the parent param.
+     */ 
     author: ({ authorId }, _, { dataSources }) => {
       // BEST-PRACTICE: make resolvers thin
       /**
@@ -38,9 +42,9 @@ const resolvers: Resolvers<DataSourceContext> = {
        * enabling us to extract the authorId.
        */
       return dataSources.trackAPI.getAuthor(authorId);
-    },
+    },    
     modules: ({ id: trackId }, args, { dataSources }) => {
-      return dataSources.trackAPI.getModules(trackId);
+      return dataSources.trackAPI.getTrackModules(trackId);
     },
   },
 };
