@@ -4,7 +4,7 @@ import { renderApolloWithRouter, cleanup, waitFor } from '../../utils/test-utils
 import TrackCard from '../track-card';
 import { Track } from '../../__generated__/types';
 
-const mockTrackCardData: Track = {
+const mockTrackCardData: Omit<Track, "modules"> = {
   id: 'c_0',
   title: 'Cat-stronomy, an introduction',
   thumbnail:

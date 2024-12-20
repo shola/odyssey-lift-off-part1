@@ -41,7 +41,7 @@ const typeDefs = gql`
     because now the types have to check for the existence of modules before
     using, but it seems like an OK tradeoff for maximum type safety.
     """
-    modules: [Module!]
+    modules: [Module!]!
   }
 
   "A Module is a single unit of teaching. Multiple Modules compose a track."

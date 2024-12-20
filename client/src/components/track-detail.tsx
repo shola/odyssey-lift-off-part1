@@ -76,7 +76,7 @@ const TrackDetail: React.FC<{track: Track | null | undefined}> = ({track}) => {
           <DetailItem>
             <h4>Modules</h4>
             <ul>
-              {modules?.map((module: any) => (
+              {modules.map((module: any) => (
                 <li key={module.title}>
                   <div>{module.title}</div>
                   <ModuleLength>

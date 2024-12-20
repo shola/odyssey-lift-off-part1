@@ -8,8 +8,9 @@ import { Link } from 'react-router-dom'
 /**
  * Track Card component renders basic info in a card format
  * for each track populating the tracks grid homepage.
+ * Omit the required modules field in Track
  */
-const TrackCard: React.FC<{ track: Track }> = ({ track }) => {
+const TrackCard: React.FC<{ track: Omit<Track, "modules"> }> = ({ track }) => {
   const { id: trackId, title, thumbnail, author, length, modulesCount } = track;
 
   return (
