@@ -7,29 +7,29 @@ import { GetTrackQuery, GetTrackQueryVariables } from "../__generated__/types";
 import TrackDetail from "../components/track-detail";
 
 // Why do I need this generated gql, and not the one that
-// comes with @apollo/client?
+// comes with @apollo/client? Because it's aware of types?
 export const GET_TRACK = gql(`
-query GetTrack($trackId: ID!) {
-  track(id: $trackId) {
-    id
-    title
+  query GetTrack($trackId: ID!) {
+    track(id: $trackId) {
+      id
+      title
     thumbnail
     length
     modulesCount
     description
     numberOfViews
-    author {
-      id
-      name
-      photo
-    }
-    modules {
-      id
-      title
-      length
+      author {
+        id
+        name
+        photo
+      }
+      modules {
+        id
+        title
+        length
+      }
     }
   }
-}
 `);
 
 export const Track = () => {
@@ -42,12 +42,11 @@ export const Track = () => {
       trackId,
     },
   });
-
   return (
-    <QueryResult loading={loading} error={error} data={data}>
-      <Layout>
-        <TrackDetail track={data?.track}></TrackDetail>
-      </Layout>
-    </QueryResult>
+    <Layout>
+      <QueryResult error={error} loading={loading} data={data}>
+        <TrackDetail track={data?.track} />
+      </QueryResult>
+    </Layout>
   );
 };

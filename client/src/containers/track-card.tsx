@@ -2,19 +2,18 @@ import React from "react";
 import styled from "@emotion/styled";
 import { colors, mq } from "../styles";
 import { humanReadableTimeFromSeconds } from "../utils/helpers";
-import {Track} from '../__generated__/types'
-import { Link } from 'react-router-dom'
+import { Track } from "../__generated__/types";
+import { Link } from "react-router-dom";
 
 /**
  * Track Card component renders basic info in a card format
  * for each track populating the tracks grid homepage.
- * Omit the required modules field in Track
  */
 const TrackCard: React.FC<{ track: Omit<Track, "modules"> }> = ({ track }) => {
-  const { id: trackId, title, thumbnail, author, length, modulesCount } = track;
+  const { title, thumbnail, author, length, modulesCount, id } = track;
 
   return (
-    <CardContainer to={`/track/${trackId}`}>
+    <CardContainer to={`/track/${id}`}>
       <CardContent>
         <CardImageContainer>
           <CardImage src={thumbnail || ""} alt={title} />
@@ -67,6 +66,7 @@ const CardContainer = styled(Link)({
     backgroundColor: colors.pink.lightest,
   },
   cursor: "pointer",
+  textDecoration: "none",
 });
 
 const CardContent = styled.div({
