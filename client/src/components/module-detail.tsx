@@ -44,7 +44,7 @@ const TopSection = styled.div({
   borderBottom: `solid 1px ${colors.pink.base}`,
 });
 
-const TopContainer = styled.div(({ totalWidth }: { totalWidth: number }) => ({
+const TopContainer = styled.div(({ totalWidth }: { totalWidth: number}) => ({
   display: 'flex',
   flexDirection: 'row',
   alignSelf: 'center',
