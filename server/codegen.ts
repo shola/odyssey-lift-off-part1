@@ -17,8 +17,7 @@ const config: CodegenConfig = {
              * It can be helpful to think of the GraphQL schema as the reflection of the shape we want our data to take. It's our job to use our data sources and resolver functions to retrieve data and do whatever manipulations we need to return it to our client in that ideal state.
              */ 
             mappers: {
-                Track: '../models#TrackModel',
-                Module: '../models#ModuleModel'
+                Track: '../models#TrackModel'
             }
         }
     }}
