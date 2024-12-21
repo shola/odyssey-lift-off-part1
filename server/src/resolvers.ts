@@ -28,6 +28,28 @@ const resolvers: Resolvers<DataSourceContext> = {
       return dataSources.trackAPI.getModule(id);
     }
   },
+  Mutation: {
+    // increments a track's numberOfViews property
+    incrementTrackViews: async (_, {trackId}, {dataSources}) => {
+      try {
+        const track = await dataSources.trackAPI.incrementTrackViews(trackId);
+        return {
+          code: 200,
+          success: true,
+          message: `Successfully incremented number of views for track ${trackId}`,
+          track
+        }
+      } catch (error) {
+        return {
+          code: error.extensions.response.status,
+          success: false,
+          message: error.extensions.response.body,
+          track: null
+        }
+      }
+
+    }
+  },
   Track: {
     /**
      * These resolvers are part of a resolver chain. That's why they have
