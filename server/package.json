@@ -7,7 +7,8 @@
     "compile": "tsc",
     "dev": "ts-node-dev --respawn ./src/index.ts",
     "start": "npm run compile && nodemon ./dist/index.js",
-    "generate": "graphql-codegen"
+    "generate": "graphql-codegen",
+    "postinstall": "npm run generate"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.3",
